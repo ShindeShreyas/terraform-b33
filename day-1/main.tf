@@ -3,8 +3,8 @@ data "aws_vpc" "default" {
 }
 
 resource "aws_security_group" "sg" {
-    name = "my_security_group"
-    description = "my_security_group"
+    name = "security_group"
+    description = "security_group"
     vpc_id = data.aws_vpc.default.id 
 
     ingress {
