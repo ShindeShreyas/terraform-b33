@@ -1,9 +1,52 @@
-resource "aws_instance" "ec2" {
-    ami = "ami-0086ee55a149bd32e"
-    instance_type = "t3.micro"
-    key_name = "ubuntu-1"
-    vpc_security_group_ids = ["sg-09e1d1fffa15b8601"]
+data "aws_ami" "default" {
+    default = true
+}
+
+resource "aws_instance_group" "sg" {
+    name = "my_security_group"
+    description = "my_security_group"
+    vpc_id = data.aws_vpc.default.id
+
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
     tags = {
-        Name = "my_ec2"
+        Name = "my_security"
     }
 }
+ 
+ resource "aws_instance" "ec2" {
+    ami = var.ami
+    instance_type = var.instance_type
+    key_name = var.key_name
+    vpc_security_group_ids = [aws_security_group.sg.id]
+
+    user_data = file("/root/terraform-b33/day-1/user_data.sh")
+
+    root_block_device {
+        volume_size = var.volume_size
+        volume_type = var.volume_type
+    }
+
+    tags = { 
+        Name = "my_ec2"
+    }
+ }
