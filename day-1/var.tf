@@ -7,7 +7,7 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-    default = "abhi"
+    default = "ubuntu-1"
 }
 
 variable "volume_size" {
