@@ -19,7 +19,7 @@ variable "private_az" {
 }
 
 variable "ami" {
-    default = "ami-0bea529386a62a2ad"
+    default = "ami-01a00762f46d584a1"
 }
 
 variable "instance_type" {
