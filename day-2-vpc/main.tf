@@ -109,16 +109,16 @@ resource "aws_security_group" "sg" {
  
 resource "aws_instance" "public_instance" {
     ami = var.ami
-    instance_type = "t3.micro"
-    key_name = "ubuntu"
+    instance_type = var.instance_type
+    key_name = var.key_name
     vpc_security_group_ids = [aws_security_group.sg.id]
     subnet_id = aws_subnet.public_subnet.id
       associate_public_ip_address = true
     user_data = file("/root/terraform-b33/day-2-vpc/user_data.sh")
 
     root_block_device {
-        volume_size = 10
-        volume_type = "gp3"
+        volume_size = var.volume_size
+        volume_type = var.volume_type
     }
 
      tags = {
