@@ -86,7 +86,7 @@ resource "aws_autoscaling_group" "asg" {
     min_size = 2
     max_size = 10
     target_group_arns = [aws_lb_target_group.tg.arn]
-    vpc_zone_identifier = ["subnet-06567d46491f653b9","subnet-0ea6acab57db6ad9b"]\
+    vpc_zone_identifier = ["subnet-06567d46491f653b9","subnet-0ea6acab57db6ad9b"]
     launch_template {
         id = aws_launch_template.lt.id
         version = "$latest"
