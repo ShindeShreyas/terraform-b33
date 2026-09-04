@@ -80,11 +80,11 @@ resource "aws_launch_template" "lt" {
     user_data = filebase64("/root/terraform-b33/day-3-lb-asg/user_data.sh")
 }
 
-resource "aws_autoscaling_group" "ASG" {
+resource "aws_autoscaling_group" "asg" {
     name = "ASG"
     desired_capacity = 2
     min_size = 2
-    max_size = 10
+    max_size = 5
     target_group_arns = [aws_lb_target_group.tg.arn]
     vpc_zone_identifier = ["subnet-06567d46491f653b9","subnet-0ea6acab57db6ad9b"]
     launch_template {
