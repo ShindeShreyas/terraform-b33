@@ -89,7 +89,7 @@ resource "aws_autoscaling_group" "asg" {
     vpc_zone_identifier = ["subnet-06567d46491f653b9","subnet-0ea6acab57db6ad9b"]
     launch_template {
         id = aws_launch_template.lt.id
-        version = "$latest"
+        version = "$Latest"
     }
     health_check_type = "ELB"
 }
