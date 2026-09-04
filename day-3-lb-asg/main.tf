@@ -60,7 +60,7 @@ resource "aws_lb" "lb" {
     security_groups = [aws_security_group.sg.id]
 }  
 
-resource "aws_lb_listner" "listener" {
+resource "aws_lb_listener" "lb_listener" {
     load_balancer_arn = aws_lb.lb.arn
     port = 80
     protocol = "HTTP"
@@ -71,7 +71,7 @@ resource "aws_lb_listner" "listener" {
 }
 
 #CREATE A AUTOSCALING GROUP
-resource "aws_launch_configuration" "lt" {
+resource "aws_launch_template" "lt" {
     name_prefix = "web-template"
     image_id = "ami-01a00762f46d584a1"
     key_name = "ubuntu"
