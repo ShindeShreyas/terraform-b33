@@ -80,7 +80,7 @@ resource "aws_launch_template" "lt" {
     user_data = filebase64("/root/terraform-b33/day-3-lb-asg/user_data.sh")
 }
 
-resource "aws_autoscaling_group" "asg" {
+resource "aws_autoscaling_group" "ASG" {
     name = "ASG"
     desired_capacity = 2
     min_size = 2
