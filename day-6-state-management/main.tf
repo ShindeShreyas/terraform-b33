@@ -1,5 +1,5 @@
 resource "aws_instance" "public_instance" {
-    ami = "ami-0bea529386a62a2ad"
+    ami = "ami-01a00762f46d584a1"
     instance_type = "t3.micro"
     key_name = "ubuntu"
     count = 2
