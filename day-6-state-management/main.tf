@@ -8,3 +8,4 @@ resource "aws_instance" "public_instance" {
         Name = "public_instance"
     }
 }
+
